@@ -1,10 +1,10 @@
 package io.github.abreufelipedev.resources;
 
+import io.github.abreufelipedev.domain.Post;
 import io.github.abreufelipedev.domain.User;
 import io.github.abreufelipedev.dto.UserDTO;
 import io.github.abreufelipedev.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -66,5 +66,14 @@ public class UserResource {
         user = userService.update(user);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findUserPosts(@PathVariable String id){
+        User user = userService.findById(id);
+
+        List<Post> posts = user.getPosts();
+
+        return ResponseEntity.ok().body(posts);
     }
 }
