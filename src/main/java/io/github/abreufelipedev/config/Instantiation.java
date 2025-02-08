@@ -3,6 +3,7 @@ package io.github.abreufelipedev.config;
 import io.github.abreufelipedev.domain.Post;
 import io.github.abreufelipedev.domain.User;
 import io.github.abreufelipedev.dto.AuthorDTO;
+import io.github.abreufelipedev.dto.CommentDTO;
 import io.github.abreufelipedev.repositories.PostRepository;
 import io.github.abreufelipedev.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,13 @@ public class Instantiation implements CommandLineRunner {
 
         Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria.getId(), maria.getName()));
         Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria.getId(), maria.getName()));
+
+        CommentDTO comment1 = new CommentDTO("Boa viagem mano!", sdf.parse("2018/03/21"), new AuthorDTO(alex.getId(), alex.getName()));
+        CommentDTO comment2 = new CommentDTO("Aproveite!", sdf.parse("2018/03/22"), new AuthorDTO(bob.getId(), bob.getName()));
+        CommentDTO comment3 = new CommentDTO(" Tenha um ótimo dia!", sdf.parse( "2018/03/23"), new AuthorDTO(alex.getId(), alex.getName()));
+
+        post1.getComments().addAll(Arrays.asList(comment1, comment2));
+        post2.getComments().add(comment3);
 
         postRepository.saveAll(Arrays.asList(post1, post2));
 
