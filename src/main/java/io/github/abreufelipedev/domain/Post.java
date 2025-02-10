@@ -6,13 +6,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 @Document
+
 public class Post implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -69,11 +69,11 @@ public class Post implements Serializable {
         this.body = body;
     }
 
-    public AuthorDTO getUser() {
+    public AuthorDTO getAuthor() {
         return author;
     }
 
-    public void setUser(AuthorDTO author) {
+    public void setAuthor(AuthorDTO author) {
         this.author = author;
     }
 
